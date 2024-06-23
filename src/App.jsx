@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
+// import { Counter } from "./components/Counter.jsx";
+
 
 
 
@@ -13,6 +15,7 @@ function App() {
   const [products, setProducts] = useState([])
   const [selectedRating, setSelectedRating] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState(null)
+  // const [count , setCount] = useState(0)
 
 
   useEffect( () => {
@@ -91,57 +94,70 @@ function App() {
 
 
   return (
-  <div className='continer'>
-    {/* <Rate/> */}
-    <div className='filter-side'>
-      <h1>Filter</h1> 
-      <div>
-        <h2> By Rating</h2>
-        { ratings.map( (r ,index) => (
-          <div key={index}>
-            <input
-              onClick={(event) => setSelectedRating(event.target.value)} 
-              name={ratings}
-              type="radio"
-              id={r}
-              value={r}
-            />
-            <label htmlFor={r} >{r} stared</label>
-          </div>
-        ))}
-      </div>
-      
+  <>
+    <header>
+      <h5>Filter by:</h5>
+      {/* <Counter/> */}
+      <div>Selected:0</div>
 
-      <div>
-        <h2> By Category</h2>
-        { category.map( (c ,index) => (
-          <div key={index}>
-            <input
-              onClick={(event) => setSelectedCategory(event.target.value)} 
-              name={category}
-              type="radio"
-              id={c}
-              value={c}
-            />
-            <label htmlFor={c} >{c}</label>
-          </div>
-        ))}
+    </header>
+
+
+    <div className='continer'>
+      {/* <Rate/> */}
+      <div className='filter-side'>
+        <div>
+          <h2>Rating</h2>
+          { ratings.map( (r ,index) => (
+            <div key={index}>
+              <input
+                onClick={(event) => setSelectedRating(event.target.value)} 
+                name={ratings}
+                type="radio"
+                id={r}
+                value={r}
+              />
+              <label htmlFor={r} >{r} stared</label>
+            </div>
+          ))}
+        </div>
+        
+
+        <div>
+          <h2>Category</h2>
+          { category.map( (c ,index) => (
+            <div key={index}>
+              <input
+                onClick={(event) => setSelectedCategory(event.target.value)} 
+                name={category}
+                type="radio"
+                id={c}
+                value={c}
+              />
+              <label htmlFor={c} >{c}</label>
+            </div>
+          ))}
+        </div>
+        
       </div>
-      
+
+
+      <ul>{products.map( (p) => (
+        <li key={p.id}>
+          <img src="" alt="img" />
+          <h3>{p.name}</h3> 
+          <p>{p.description}</p> 
+          <h4>{p.price}$</h4>
+          <button  >Add to Card</button>
+        </li>
+      ))}</ul>
     </div>
 
-
-    <ul>{products.map( (p) => (
-      <li key={p.id}>
-        <img src="" alt="img" />
-        <h3>{p.name}</h3> 
-        <p>{p.description}</p> 
-        <h4>{p.price}$</h4>
-      </li>
-    ))}</ul>
-  </div>
+  </>
 
   )
+
+ 
 }
 
 export default App
