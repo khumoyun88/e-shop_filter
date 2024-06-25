@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
-// import { Counter } from "./components/Counter.jsx";
+// import Counter from './components/counter'
+// import  Counter  from "./src/components/Counter";
 
 
 
@@ -15,7 +16,10 @@ function App() {
   const [products, setProducts] = useState([])
   const [selectedRating, setSelectedRating] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState(null)
-  // const [count , setCount] = useState(0)
+  const [count , setCount] = useState(0)
+  const incrementCounter = () => {
+    setCount(count + 1);
+  }
 
 
   useEffect( () => {
@@ -98,7 +102,7 @@ function App() {
     <header>
       <h5>Filter by:</h5>
       {/* <Counter/> */}
-      <div>Selected:0</div>
+      <div>Selected items:{count}</div>
 
     </header>
 
@@ -148,7 +152,7 @@ function App() {
           <h3>{p.name}</h3> 
           <p>{p.description}</p> 
           <h4>{p.price}$</h4>
-          <button  >Add to Card</button>
+          <button onClick={incrementCounter}>Add to Card</button>
         </li>
       ))}</ul>
     </div>
